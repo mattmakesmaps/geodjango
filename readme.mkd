@@ -1,0 +1,4 @@
+Overview
+========
+
+Just another GeoDjango application.
