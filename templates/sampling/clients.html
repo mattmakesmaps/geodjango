@@ -1,0 +1,13 @@
+{% if client_list %}
+    {% for c in client_list %}
+        <h3><a href="./{{ c.id }}/">{{ c.name }}</a></h3>
+        <ul>
+        <!-- https://docs.djangoproject.com/en/dev/topics/templates/#accessing-method-calls -->
+        {% for project in c.project_set.all %}
+        <li><a href="../projects/{{ project.id }}/">{{ project.number }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+{% else %}
+    <p>No Report</p>
+{% endif %}

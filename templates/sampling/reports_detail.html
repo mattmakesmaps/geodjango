@@ -1,0 +1,9 @@
+{% if report_list %}
+    <ul>
+    {% for r in report_list %}
+        <li><a href="/{{ r.id }}/">{{ r.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Report</p>
+{% endif %}
