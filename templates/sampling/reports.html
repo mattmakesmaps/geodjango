@@ -1,7 +1,7 @@
 {% if report_list %}
     <ul>
     {% for r in report_list %}
-        <li><a href="/{{ r.id }}/">{{ r.name }}</a></li>
+        <li><a href="../reports/{{ r.id }}/">{{ r.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

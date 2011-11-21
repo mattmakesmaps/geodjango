@@ -1,9 +1,141 @@
-{% if report_list %}
-    <ul>
-    {% for r in report_list %}
-        <li><a href="/{{ r.id }}/">{{ r.name }}</a></li>
-    {% endfor %}
-    </ul>
+<html>
+  <head>
+    <title>
+       {% if report_detail %}
+         {{ report_detail.name }}
+       {% else %}
+         Error
+       {% endif %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
+  </head>
+
+  <body>
+{% if report_detail %}
+    <h1>{{ report_detail.name }}</h1>
 {% else %}
     <p>No Report</p>
 {% endif %}
+
+{% if report_status %}
+    <h2>Data Preperation</h2>
+    <table>
+      <tr>
+        <td class ="desc">Data Validated</td>
+        {% if report_status.data_validated %}
+           <td class="true">{{ report_status.data_validated }}</td>
+        {% else %}
+           <td class="false">{{ report_status.data_validated }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Non-Validated EDD Prepared</td>
+        {% if report_status.edd_prep_pre_validation %}
+           <td class="true">{{ report_status.edd_prep_pre_validation }}</td>
+        {% else %}
+           <td class="false">{{ report_status.edd_prep_pre_validation }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Validated EDD Prepared</td>
+        {% if report_status.edd_prep_post_validation %}
+           <td class="true">{{ report_status.edd_prep_post_validation }}</td>
+        {% else %}
+           <td class="false">{{ report_status.edd_prep_post_validation }}</td>
+        {% endif %} 
+      </tr>
+    </table>
+    <table>
+    <h2>Screening Criteria</h2>
+      <tr>
+        <td class="desc">Screening Criteria Chosen</td>
+        {% if report_status.screening_criteria_chosen %}
+           <td class="true">{{ report_status.screening_criteria_chosen }}</td>
+        {% else %}
+           <td class="false">{{ report_status.screening_criteria_chosen }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Reg Limits Added to EnvD</td>
+        {% if report_status.reg_limits_added %}
+           <td class="true">{{ report_status.reg_limits_added }}</td>
+        {% else %}
+           <td class="false">{{ report_status.reg_limits_added }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Existing Reg Limits Updated</td>
+        {% if report_status.reg_limits_updated %}
+           <td class="true">{{ report_status.reg_limits_updated }}</td>
+        {% else %}
+           <td class="false">{{ report_status.reg_limits_updated }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Wiki Reg Limit Groups Updated</td>
+        {% if report_status.wiki_reg_limit_groups_updated %}
+           <td class="true">{{ report_status.wiki_reg_limit_groups_updated }}</td>
+        {% else %}
+           <td class="false">{{ report_status.wiki_reg_limit_groups_updated }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+       <td class="desc">Wiki Reg Limit Dates Updated</td>
+        {% if report_status.wiki_reg_limit_dates_updated %}
+           <td class="true">{{ report_status.wiki_reg_limit_dates_updated }}</td>
+        {% else %}
+           <td class="false">{{ report_status.wiki_reg_limit_dates_updated }}</td>
+        {% endif %} 
+      </tr>
+    </table>
+    <table>
+      <h2>Import</h2>
+      <tr>
+        <td class="desc">EDD Imported</td>
+        {% if report_status.edd_imported %}
+           <td class="true">{{ report_status.edd_imported }}</td>
+        {% else %}
+           <td class="false">{{ report_status.edd_imported }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Sample Group Created</td>
+        {% if report_status.sample_group_created %}
+           <td class="true">{{ report_status.sample_group_created }}</td>
+        {% else %}
+           <td class="false">{{ report_status.sample_group_created }}</td>
+        {% endif %} 
+      </tr>
+    </table>
+    <table>
+      <h2>Table Production</h2>
+      <tr>
+        <td class="desc">Draft Table Produced</td>
+        {% if report_status.draft_table_produced %}
+           <td class="true">{{ report_status.draft_table_produced }}</td>
+        {% else %}
+           <td class="false">{{ report_status.draft_table_produced }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Draft Tables QA/QC</td>
+        {% if report_status.draft_qa_qc %}
+           <td class="true">{{ report_status.draft_qa_qc }}</td>
+        {% else %}
+           <td class="false">{{ report_status.draft_qa_qc }}</td>
+        {% endif %} 
+      </tr>
+      <tr>
+        <td class="desc">Final Formatting Completed</td>
+        {% if report_status.final_formatting %}
+           <td class="true">{{ report_status.final_formatting }}</td>
+        {% else %}
+           <td class="false">{{ report_status.final_formatting }}</td>
+        {% endif %} 
+      </tr>
+    </table>
+{% else %}
+    <p>No Status</p>
+{% endif %}
+  </body>
+</html>

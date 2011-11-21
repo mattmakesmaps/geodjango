@@ -1,23 +1,24 @@
 from django.conf.urls.defaults import patterns, include, url
+from sampling.models import Report, Client, Project, Status
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'geodjango.views.home', name='home'),
-    # url(r'^geodjango/', include('geodjango.foo.urls')),
-
-    # Index of the Sampling Application
-    url(r'^index/$', 'sampling.views.index'),
+urlpatterns = patterns('sampling.views',
+    # Index of the sampling application
+    url(r'^index/$', 'index'),
 
     # Root of the client based views
-    url(r'^clients/$', 'sampling.views.clients'),
+    url(r'^clients/$', 'clients'),
+    url(r'^clients/(?P<client_id>\d+)/$', 'clients_detail'),
 
     # Root of the Report based views
-    url(r'^reports/$', 'sampling.views.reports'),
-    url(r'^reports/(?P<report_id>\d+)/$', 'sampling.views.reports_detail'),
+    url(r'^reports/$', 'reports'),
+    url(r'^reports/(?P<report_id>\d+)/$', 'reports_detail'),
+)
+
+urlpatterns += patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
