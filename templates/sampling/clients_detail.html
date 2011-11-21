@@ -1,0 +1,9 @@
+{% if project_list %}
+    <ul>
+    {% for p in project_list %}
+        <li><a href="/{{ p.id }}/">{{ p.number }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Projects found for this client.</p>
+{% endif %}

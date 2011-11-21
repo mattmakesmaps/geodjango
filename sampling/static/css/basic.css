@@ -1,0 +1,27 @@
+body {
+  font-family: "Georgia", sans-serif;
+  color: #474539;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 20;
+}
+
+td {
+  font-size: 16px;
+  font-weight: bold;
+}
+td.desc {
+  width: 350px;
+}
+td.true {
+  color: #2c353e;
+}
+td.false{
+  color: #a92c10;
+}
