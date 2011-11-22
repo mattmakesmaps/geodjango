@@ -4,12 +4,24 @@ body {
   text-transform: uppercase;
 }
 
+#sidebar {
+  float: left;
+  width: 350px;
+  margin: 0px 5px 5px 5px;
+}
+
+#map {
+  height: 575px;
+  margin: 0px 5px 5px 5px;
+}
+
 h1 {
   font-size: 32px;
 }
 
 h2 {
   font-size: 20;
+  background-color: #e3e3e3;
 }
 
 td {

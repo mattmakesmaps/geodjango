@@ -8,16 +8,23 @@
        {% endif %}
     </title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
+   
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}leaflet/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}leaflet/leaflet.ie.css" /><![endif]-->
   </head>
 
   <body>
 {% if report_detail %}
-    <h1>{{ report_detail.name }}</h1>
+    <div id="header">
+      <h1>{{ report_detail.name }}</h1>
+    </div>
 {% else %}
     <p>No Report</p>
 {% endif %}
 
 {% if report_status %}
+    <div id="sidebar">
     <h2>Data Preperation</h2>
     <table>
       <tr>
@@ -134,8 +141,12 @@
         {% endif %} 
       </tr>
     </table>
+  </div>
+  <div id="map"></div>
 {% else %}
     <p>No Status</p>
 {% endif %}
+  <script src="{{ STATIC_URL }}leaflet/leaflet.js"></script>
+  <script src="{{ STATIC_URL }}js/mapcode.js"></script>
   </body>
 </html>
