@@ -4,6 +4,14 @@ body {
   text-transform: uppercase;
 }
 
+a:link, a:visited {
+  color: #4B5657;
+}
+
+a:hover, a:active {
+  color: #4B5657;
+  background-color: #e3e3e3;
+}
 #sidebar {
   float: left;
   width: 350px;

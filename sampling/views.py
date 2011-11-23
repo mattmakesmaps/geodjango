@@ -7,12 +7,12 @@ from django.shortcuts import render_to_response
 # Uses render_to_response()
 def index(request):
     report_list = Report.objects.all()
-    return render_to_response('sampling/index.html', {'report_list': report_list})
+    return render_to_response('sampling/index.html', {'report_list': report_list}, context_instance=RequestContext(request))
 
 # Uses render_to_response()
 def clients(request):
     client_list = Client.objects.all()
-    project_list = Project.objects.all()
+    project_list = Project.objects.order_by('-name')
     return render_to_response('sampling/clients.html', {'client_list': client_list, 'project_list': project_list}, context_instance=RequestContext(request))
 
 # For a given client, grab associated projects

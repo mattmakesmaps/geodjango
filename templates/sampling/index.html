@@ -1,9 +1,15 @@
-{% if report_list %}
-    <ul>
-    {% for r in report_list %}
-        <li><a href="../reports/{{ r.id }}/">{{ r.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Report</p>
-{% endif %}
+<html>
+<head>
+  <title>RIDOLFI Sampling Tracker</title>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
+</head>
+<body>
+  <h1>RIDOLFI Sampling Tracker</h1>
+  <p>Choose a view of sampling data</p>
+  <ul>
+      <li><a href="../clients/">Clients</a></li>
+      <li><a href="../projects/">Projects</a></li>
+      <li><a href="../reports/">Reports</a></li>
+  </ul>
+</body>
+</html>

@@ -8,6 +8,13 @@ class Client(models.Model):
     # Function to return Alias (useful in admin)
     def __unicode__(self):
         return self.name
+   
+    # Controls default ordering and appearance of model name
+    # in admin manager.
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Client'
+        verbose_name_plural = 'Clients'
 
 class Project(models.Model):
     name = models.CharField('Project Name', max_length=100)
@@ -18,6 +25,9 @@ class Project(models.Model):
     def __unicode__(self):
         return self.number
 
+    class Meta:
+        ordering = ['number']
+
 class Report(models.Model):
     name = models.CharField('Report Name', max_length = 100)
     project = models.ForeignKey(Project)
@@ -27,12 +37,18 @@ class Report(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 class Lab(models.Model):
     name = models.CharField('Analytical Lab', max_length=75)
 
     # Function to return Alias (useful in admin)
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ['name']
 
 class SDG(models.Model):    
     name = models.CharField('SDG Name', max_length = 25)
@@ -44,6 +60,11 @@ class SDG(models.Model):
     # Function to return Alias (useful in admin)
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'SDG'
+        verbose_name_plural = 'SDGs'
+        ordering = ['name']
 
 class Status(models.Model):
     report = models.OneToOneField(Report)
@@ -64,4 +85,6 @@ class Status(models.Model):
     # Function to return Alias (useful in admin)
    # def __unicode__(self):
    #     return self.report
-
+    class Meta:
+        verbose_name = 'Status'
+        verbose_name_plural = 'Status'
