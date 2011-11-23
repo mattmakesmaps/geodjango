@@ -1,9 +1,20 @@
-{% if report_list %}
-    <ul>
-    {% for r in report_list %}
-        <li><a href="../reports/{{ r.id }}/">{{ r.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Report</p>
-{% endif %}
+<html>
+<head>
+  <title>Reports</title>    
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
+</head>
+
+<body>
+
+  <h1>Report Index</h1>
+    {% if report_list %}
+      <ul>
+        {% for r in report_list %}
+          <li><a href="../reports/{{ r.id }}/">{{ r.name }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Report</p>
+    {% endif %}
+</body>
+</html>

@@ -13,7 +13,7 @@ def index(request):
 def clients(request):
     client_list = Client.objects.all()
     project_list = Project.objects.all()
-    return render_to_response('sampling/clients.html', {'client_list': client_list, 'project_list': project_list})
+    return render_to_response('sampling/clients.html', {'client_list': client_list, 'project_list': project_list}, context_instance=RequestContext(request))
 
 # For a given client, grab associated projects
 # __TODO__ grab reports associated with a project
@@ -24,7 +24,7 @@ def clients_detail(request, client_id):
 # Uses render_to_response()
 def reports(request):
     report_list = Report.objects.all()
-    return render_to_response('sampling/index.html', {'report_list': report_list})
+    return render_to_response('sampling/reports.html', {'report_list': report_list}, context_instance=RequestContext(request))
 
 # Uses render_to_response()
 # NOTE: render_to_response() requires third argument to override default context.
