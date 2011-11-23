@@ -2,3 +2,7 @@ Overview
 ========
 
 Just another GeoDjango application.
+
+Want to push out correctly-formatted GeoJSON features? Thank CRSchmidt.
+
+http://stackoverflow.com/questions/3034482/rendering-spatial-data-of-geoqueryset-in-a-custom-view-on-geodjango

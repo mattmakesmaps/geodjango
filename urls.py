@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from sampling.models import Report, Client, Project, Status
+from sampling.models import Report, Client, Project, Status, ResBnd
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,6 +16,11 @@ urlpatterns = patterns('sampling.views',
     # Root of the Report based views
     url(r'^reports/$', 'reports'),
     url(r'^reports/(?P<report_id>\d+)/$', 'reports_detail'),
+
+    # Root of GIS
+    url(r'^geojson/$', 'geojson'),
+    url(r'^geojson/resbnd$', 'resbnd'),
+    url(r'^geojson/resbnd/(?P<resbnd_id>\d+)/$', 'resbnd_detail'),
 )
 
 urlpatterns += patterns('',

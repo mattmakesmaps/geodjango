@@ -1,7 +1,8 @@
 # Enable use of Admin Interface
 
 from sampling.models import *
-from django.contrib import admin
+#from django.contrib import admin
+from django.contrib.gis import admin
 
 class StatusInline(admin.StackedInline):
     model = Status
@@ -45,3 +46,4 @@ admin.site.register(Report, ReportAdmin)
 admin.site.register(Lab)
 admin.site.register(SDG, SDGAdmin)
 admin.site.register(Status, StatusAdmin)
+admin.site.register(ResBnd, admin.OSMGeoAdmin)
