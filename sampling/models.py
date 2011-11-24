@@ -1,11 +1,26 @@
 #from django.db import models
 from django.contrib.gis.db import models
 
-# Create your models here.
+# A GIS Model containing WA/AK Reservation Boundaries
+class Boundary(models.Model):
+    name = models.CharField('Name', max_length=100)
+    name_formal = models.CharField('Formal Name', max_length=100)
 
+    mpoly = models.MultiPolygonField()
+    objects = models.GeoManager()
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Tribal Boundary'
+        verbose_name_plural = 'Tribal Boundaries'
+
+# Tabular models
 class Client(models.Model):
     name = models.CharField('Client Name', max_length=100)
-    
+    boundary = models.ForeignKey(Boundary)
     # Function to return Alias (useful in admin)
     def __unicode__(self):
         return self.name
@@ -91,9 +106,11 @@ class Status(models.Model):
         verbose_name_plural = 'Status'
 
 # A GIS Model containing WA/AK Reservation Boundaries
-class ResBnd(models.Model):
+"""
+class Boundary(models.Model):
     name = models.CharField('Name', max_length=100)
     name_formal = models.CharField('Formal Name', max_length=100)
+    client = models.ForeignKey(Client)
 
     mpoly = models.MultiPolygonField()
     objects = models.GeoManager()
@@ -104,3 +121,4 @@ class ResBnd(models.Model):
     class Meta:
         verbose_name = 'Tribal Boundary'
         verbose_name_plural = 'Tribal Boundaries'
+"""

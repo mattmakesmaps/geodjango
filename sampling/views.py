@@ -1,6 +1,6 @@
 #Create your views here.
 from vectorformats.Formats import Django, GeoJSON
-from sampling.models import Report, Client, Project, Status, ResBnd
+from sampling.models import Report, Client, Project, Status, Boundary
 from django.http import HttpResponse
 from django.template import Context, RequestContext, loader
 from django.shortcuts import render_to_response
@@ -33,13 +33,25 @@ def reports(request):
 def reports_detail(request, report_id):
     report_detail = Report.objects.get(pk=report_id)
     report_status = Status.objects.filter(report__pk=report_id)[0]
-    return render_to_response('sampling/reports_detail.html', {'report_detail': report_detail, 'report_status':report_status}, context_instance=RequestContext(request))
+  
+    # Slog through the models and get a boundary from a report
+    project = Project.objects.get(report__pk=report_id)
+    client = Client.objects.get(project__pk=project.id)
+    boundary = Boundary.objects.get(client=client.id)
+
+    return render_to_response('sampling/reports_detail.html', {'report_detail': report_detail, 'report_status':report_status, 'boundary': boundary}, context_instance=RequestContext(request))
 
 # Using CRSchmidt's vectorfeatures module, create a real
 # GeoJSON FeatureCollection.
-def resbnd_detail(request, resbnd_id):
-    resbnd_detail = ResBnd.objects.filter(pk=resbnd_id)
+def boundary_detail(request, boundary_id):
+    boundary_detail = Boundary.objects.filter(pk=boundary_id)
     djf = Django.Django(geodjango="mpoly", properties=['name','name_formal'])
     geoj = GeoJSON.GeoJSON()
-    s = geoj.encode(djf.decode(resbnd_detail))
+    s = geoj.encode(djf.decode(boundary_detail))
     return HttpResponse(s)
+
+def boundary(request):
+    return HttpResponse("Move Along... Move Along")
+
+def geojson(request):
+    return HttpResponse("Move Along... Move Along")

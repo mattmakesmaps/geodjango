@@ -6,3 +6,8 @@ Just another GeoDjango application.
 Want to push out correctly-formatted GeoJSON features? Thank CRSchmidt.
 
 http://stackoverflow.com/questions/3034482/rendering-spatial-data-of-geoqueryset-in-a-custom-view-on-geodjango
+
+# TODO
+
+* From GeoDjango view, pass min bbox points so leaflet can have map
+  properly zoomed and centered.
