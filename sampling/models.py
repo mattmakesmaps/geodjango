@@ -20,7 +20,7 @@ class Boundary(models.Model):
 # Tabular models
 class Client(models.Model):
     name = models.CharField('Client Name', max_length=100)
-    boundary = models.ForeignKey(Boundary)
+    boundary = models.ForeignKey(Boundary, null=True, blank=True)
     # Function to return Alias (useful in admin)
     def __unicode__(self):
         return self.name

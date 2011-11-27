@@ -116,12 +116,13 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'sampling',
-    'django.contrib.gis'
+    'gps',
+    'django.contrib.gis',
+    # for graph_models support
+    'django_extensions',
 )
 
 # A sample logging configuration. The only tangible logging

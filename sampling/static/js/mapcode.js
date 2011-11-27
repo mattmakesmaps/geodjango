@@ -1,6 +1,6 @@
 //Load JSON URL and fire callback creating map
 
-var geoJSONBaseURL = "http://localhost:8000/geojson/boundary/";
+var geoJSONBaseURL = "http://localhost:8000/sampling/geojson/boundary/";
 var geoJSONURL = geoJSONBaseURL + boundary_id;
 
 $.getJSON(geoJSONURL, makeMap);

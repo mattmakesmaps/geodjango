@@ -10,7 +10,7 @@ field_mapping = {
     'mpoly': 'MULTIPOLYGON'
 }
 
-shp = os.path.abspath('/home/matt/Downloads/wa_tribal/tl_2010_53_aiannh10.shp')
+shp = os.path.abspath('/home/matt/Downloads/WA_Tribal/tl_2010_53_aiannh10.shp')
 
 def run(verbose=True):
     lm = LayerMapping(Boundary, shp, field_mapping, transform=False)
