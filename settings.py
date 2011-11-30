@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'sampling',
     'gps',
+    'company',
     'django.contrib.gis',
     # for graph_models support
     'django_extensions',

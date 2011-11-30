@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-
+from company.models import Boundary, Client, Project, Report
 """
 # A GIS Model containing WA/AK Reservation Boundaries
 class Boundary(models.Model):

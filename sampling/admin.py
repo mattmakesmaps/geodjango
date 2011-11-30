@@ -1,6 +1,8 @@
 # Enable use of Admin Interface
 
 from sampling.models import *
+from company.models import *
+from gps.models import *
 #from django.contrib import admin
 from django.contrib.gis import admin
 
@@ -40,10 +42,24 @@ class SDGAdmin(admin.ModelAdmin):
     list_display = ('name', 'lab', 'report')
 
 # Add each model to the admin
+
+# Company App
 admin.site.register(Client)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Report, ReportAdmin)
+admin.site.register(Boundary, admin.OSMGeoAdmin)
+
+# Sampling App
 admin.site.register(Lab)
 admin.site.register(SDG, SDGAdmin)
 admin.site.register(Status, StatusAdmin)
-admin.site.register(Boundary, admin.OSMGeoAdmin)
+
+# GPS App
+admin.site.register(Site_Poly, admin.OSMGeoAdmin)
+admin.site.register(Site_Point, admin.OSMGeoAdmin)
+admin.site.register(Site_Line, admin.OSMGeoAdmin)
+admin.site.register(GPS_Poly, admin.OSMGeoAdmin)
+admin.site.register(GPS_Point, admin.OSMGeoAdmin)
+admin.site.register(GPS_Line, admin.OSMGeoAdmin)
+admin.site.register(Feature_Type)
+admin.site.register(GPS_Metadata)
