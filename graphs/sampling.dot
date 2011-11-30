@@ -17,9 +17,9 @@ digraph name {
 
 
     sampling_models_Boundary [label=<
-    <TABLE BGCOLOR="lightblue" BORDER="0" CELLBORDER="0" CELLSPACING="0">
-     <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="gold"
-     ><FONT FACE="Helvetica Bold" COLOR="black"
+    <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+     <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4"
+     ><FONT FACE="Helvetica Bold" COLOR="white"
      >Boundary</FONT></TD></TR>
     
         

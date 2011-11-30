@@ -45,7 +45,7 @@ def reports_detail(request, report_id):
 # GeoJSON FeatureCollection.
 def boundary_detail(request, boundary_id):
     boundary_detail = Boundary.objects.filter(pk=boundary_id)
-    djf = Django.Django(geodjango="mpoly", properties=['name','name_formal'])
+    djf = Django.Django(geodjango="geom", properties=['name','name_formal'])
     geoj = GeoJSON.GeoJSON()
     s = geoj.encode(djf.decode(boundary_detail))
     return HttpResponse(s)

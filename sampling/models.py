@@ -1,6 +1,6 @@
-#from django.db import models
 from django.contrib.gis.db import models
 
+"""
 # A GIS Model containing WA/AK Reservation Boundaries
 class Boundary(models.Model):
     name = models.CharField('Name', max_length=100)
@@ -55,6 +55,7 @@ class Report(models.Model):
 
     class Meta:
         ordering = ['name']
+"""
 
 class Lab(models.Model):
     name = models.CharField('Analytical Lab', max_length=75)
@@ -104,21 +105,3 @@ class Status(models.Model):
     class Meta:
         verbose_name = 'Status'
         verbose_name_plural = 'Status'
-
-# A GIS Model containing WA/AK Reservation Boundaries
-"""
-class Boundary(models.Model):
-    name = models.CharField('Name', max_length=100)
-    name_formal = models.CharField('Formal Name', max_length=100)
-    client = models.ForeignKey(Client)
-
-    mpoly = models.MultiPolygonField()
-    objects = models.GeoManager()
-
-    def __unicode__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Tribal Boundary'
-        verbose_name_plural = 'Tribal Boundaries'
-"""
