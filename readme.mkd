@@ -10,8 +10,9 @@ http://stackoverflow.com/questions/3034482/rendering-spatial-data-of-geoqueryset
 # My dumb repo contains code written by pretty smart folks.
 
 * [DjangoGraphviz](https://code.djangoproject.com/wiki/DjangoGraphviz)
-* [FeatureServer](http://pypi.python.org/pypi/FeatureServer/1.12)
+* [FeatureServer](http://pypi.python.org/pypi/FeatureServer/1.12)/[VectorFeatures](http://pypi.python.org/pypi/vectorformats/0.1)
 * [jQuery](jquery.com)
+* [Leaflet](http://leaflet.cloudmade.com/)
 
 # TODO
 
