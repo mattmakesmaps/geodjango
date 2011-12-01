@@ -51,8 +51,8 @@ class GPS_Point(models.Model):
     gps_date = models.DateField('GPS_Date')
     gps_time = models.CharField('GPS_Time', max_length=50)
     feat_name = models.CharField('Feat_Name', max_length=50)
-    feature_type = models.ForeignKey(Feature_Type, default=Feature_Type.objects.get(name='undefined'))
-    gps_metadata = models.ForeignKey(GPS_Metadata, default=GPS_Metadata.objects.get(name='undefined'))
+    feature_type = models.ForeignKey(Feature_Type, default=Feature_Type.objects.filter(name='undefined'))
+    gps_metadata = models.ForeignKey(GPS_Metadata, default=GPS_Metadata.objects.filter(name='undefined'))
 
     geom = models.MultiPointField()
     objects = models.GeoManager()
