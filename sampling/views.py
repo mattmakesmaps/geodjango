@@ -35,6 +35,7 @@ def reports_detail(request, report_id):
     report_status = Status.objects.filter(report__pk=report_id)[0]
   
     # Slog through the models and get a boundary from a report
+    # TODO Try walking all the way up in one call
     project = Project.objects.get(report__pk=report_id)
     client = Client.objects.get(project__pk=project.id)
     boundary = Boundary.objects.get(client=client.id)
