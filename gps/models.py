@@ -48,11 +48,13 @@ def default_gps_metadata():
 class GPS_Point(models.Model):
     name = models.CharField('Name', max_length=50)
     max_pdop = models.DecimalField('Max_PDOP', max_digits=5, decimal_places=1, blank=True)
-    gps_date = models.DateField('GPS_Date')
-    gps_time = models.CharField('GPS_Time', max_length=50)
-    feat_name = models.CharField('Feat_Name', max_length=50)
-    feature_type = models.ForeignKey(Feature_Type, default=Feature_Type.objects.filter(name='undefined'))
-    gps_metadata = models.ForeignKey(GPS_Metadata, default=GPS_Metadata.objects.filter(name='undefined'))
+    gps_date = models.DateField('GPS_Date', blank=True)
+    gps_time = models.CharField('GPS_Time', max_length=50, blank=True)
+    gps_week = models.IntegerField('GPS_Week', max_length=10, blank=True)
+    gps_second = models.IntegerField('GPS_Second', max_length=10, blank=True)
+    feat_name = models.CharField('Feat_Name', max_length=50, blank=True)
+    feature_type = models.ForeignKey(Feature_Type, default=Feature_Type.objects.filter(name='undefined'), blank=True)
+    gps_metadata = models.ForeignKey(GPS_Metadata, default=GPS_Metadata.objects.filter(name='undefined'), blank=True)
 
     geom = models.MultiPointField()
     objects = models.GeoManager()
@@ -67,11 +69,13 @@ class GPS_Point(models.Model):
 class GPS_Line(models.Model):
     name = models.CharField('Name', max_length=50)
     max_pdop = models.DecimalField('Max_PDOP', max_digits=5, decimal_places=1, blank=True)
-    gps_date = models.DateField('GPS_Date')
-    gps_time = models.CharField('GPS_Time', max_length=50)
-    feat_name = models.CharField('Feat_Name', max_length=50)
-    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized')
-    gps_metadata = models.ForeignKey(GPS_Metadata, default='Uncategorized')
+    gps_date = models.DateField('GPS_Date', blank=True)
+    gps_time = models.CharField('GPS_Time', max_length=50, blank=True)
+    gps_week = models.IntegerField('GPS_Week', max_length=10, blank=True)
+    gps_second = models.IntegerField('GPS_Second', max_length=10, blank=True)
+    feat_name = models.CharField('Feat_Name', max_length=50, blank=True)
+    feature_type = models.ForeignKey(Feature_Type, default=Feature_Type.objects.filter(name='undefined'), blank=True)
+    gps_metadata = models.ForeignKey(GPS_Metadata, default=GPS_Metadata.objects.filter(name='undefined'), blank=True)
 
     geom = models.MultiLineStringField()
     objects = models.GeoManager()
@@ -86,11 +90,13 @@ class GPS_Line(models.Model):
 class GPS_Poly(models.Model):
     name = models.CharField('Name', max_length=50)
     max_pdop = models.DecimalField('Max_PDOP', max_digits=5, decimal_places=1, blank=True)
-    gps_date = models.DateField('GPS_Date')
-    gps_time = models.CharField('GPS_Time', max_length=50, default='Uncategorized')
-    feat_name = models.CharField('Feat_Name', max_length=50, default='Uncategorized')
-    feature_type = models.ForeignKey(Feature_Type)
-    gps_metadata = models.ForeignKey(GPS_Metadata)
+    gps_date = models.DateField('GPS_Date', blank=True)
+    gps_time = models.CharField('GPS_Time', max_length=50, blank=True)
+    gps_week = models.IntegerField('GPS_Week', max_length=10, blank=True)
+    gps_second = models.IntegerField('GPS_Second', max_length=10, blank=True)
+    feat_name = models.CharField('Feat_Name', max_length=50, blank=True)
+    feature_type = models.ForeignKey(Feature_Type, default=Feature_Type.objects.filter(name='undefined'), blank=True)
+    gps_metadata = models.ForeignKey(GPS_Metadata, default=GPS_Metadata.objects.filter(name='undefined'), blank=True)
 
     geom = models.MultiPolygonField()
     objects = models.GeoManager()
@@ -105,7 +111,7 @@ class GPS_Poly(models.Model):
 # Supporting Site Features
 class Site_Point(models.Model):
     name = models.CharField('Name', max_length=100)
-    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized')
+    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized', blank=True)
     projects = models.ManyToManyField(Project)
 
     geom = models.MultiPointField()
@@ -120,7 +126,7 @@ class Site_Point(models.Model):
 
 class Site_Line(models.Model):
     name = models.CharField('Name', max_length=100)
-    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized')
+    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized', blank=True)
     projects = models.ManyToManyField(Project)
 
     geom = models.MultiLineStringField()
@@ -135,7 +141,7 @@ class Site_Line(models.Model):
 
 class Site_Poly(models.Model):
     name = models.CharField('Name', max_length=100)
-    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized')
+    feature_type = models.ForeignKey(Feature_Type, default='Uncategorized', blank=True)
     projects = models.ManyToManyField(Project)
 
     geom = models.MultiPolygonField()
