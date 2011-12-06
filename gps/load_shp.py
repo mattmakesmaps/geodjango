@@ -14,7 +14,7 @@ field_mapping = {
     'geom': 'MultiPoint',
 }
 
-ds = os.path.abspath('/home/matt/Dropbox/Junk/Export/237T2Dump/Point_ge.shp')
+ds = os.path.abspath('/home/matt/temp/GPS/Point_ge.shp')
 
 def run(verbose=True):
     lm = LayerMapping(GPS_Point, ds, field_mapping, transform=False)

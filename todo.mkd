@@ -1,0 +1,12 @@
+Stuff TODO
+==========
+
+# Admin
+
+  * Group GPS Points By GPS_Metadata
+
+# Views
+
+# Models
+
+# URLs
