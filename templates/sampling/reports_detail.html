@@ -146,9 +146,14 @@
 {% else %}
     <p>No Status</p>
 {% endif %}
-  <script type="text/javascript"> var boundary_id = {{  boundary.id }} </script>
   <script src="{{ STATIC_URL }}libs/leaflet/leaflet.js"></script>
   <script src="{{ STATIC_URL }}libs/jquery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript"> 
+      var boundary_id = {{ boundary.id }} 
+      var southWest = new L.LatLng({{ boundary.geom.extent.1 }}, {{ boundary.geom.extent.0 }})
+      var northEast = new L.LatLng({{ boundary.geom.extent.3 }}, {{ boundary.geom.extent.2 }})
+      var bounds = new L.LatLngBounds(southWest, northEast);
+  </script>
   <script src="{{ STATIC_URL }}js/mapcode.js"></script>
   </body>
 </html>

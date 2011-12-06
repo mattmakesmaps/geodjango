@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
-from sampling.models import Report, Client, Project, Status, Boundary
+from company.models import Report, Client, Project, Boundary
+from sampling.models import Status
 
 urlpatterns = patterns('sampling.views',
     # Index of the sampling application

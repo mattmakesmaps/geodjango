@@ -8,7 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^sampling/', include('sampling.urls')),
     url(r'^gps/', include('gps.urls')),
-#    url(r'^company/', include('company.urls')),
+    url(r'^company/', include('company.urls')),
 )
 
 # Admin

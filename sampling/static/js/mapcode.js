@@ -1,6 +1,6 @@
 //Load JSON URL and fire callback creating map
 
-var geoJSONBaseURL = "http://localhost:8000/sampling/geojson/boundary/";
+var geoJSONBaseURL = "http://localhost:8000/company/geojson/boundary/";
 var geoJSONURL = geoJSONBaseURL + boundary_id;
 
 $.getJSON(geoJSONURL, makeMap);
@@ -18,6 +18,8 @@ function makeMap(data){
     cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttrib});
 
   var wa = new L.LatLng(47.6, -122);
-  map.setView(wa, 08).addLayer(cloudmade);
+  //map.setView(wa, 08).addLayer(cloudmade);
+  map.addLayer(cloudmade);
   map.addLayer(geojsonLayer);
+  map.fitBounds(bounds)
 }
