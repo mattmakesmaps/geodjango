@@ -11,15 +11,30 @@ function makeMap(data){
 
   //Create map instance
   var map = new L.Map('map')
-  var geojsonLayer = new L.GeoJSON(sitePoly);
+  var boundaryGeoJSON = new L.GeoJSON(sitePoly);
 
-  var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/5df4a1ed4a8c41bd91725ad594aa6139/997/256/{z}/{x}/{y}.png',
-    cloudmadeAttrib = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-    cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttrib});
+  var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/5df4a1ed4a8c41bd91725ad594aa6139/997/256/{z}/{x}/{y}.png'
+  var cloudmadeAttrib = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade'
+  var cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttrib});
 
-  var wa = new L.LatLng(47.6, -122);
-  //map.setView(wa, 08).addLayer(cloudmade);
+  // See: http://developer.mapquest.com/web/products/open/map
+  var mapQuestAerialURL = 'http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png'
+  var mapQuestAerialAttrib = 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency. Thanks MapQuest!'
+  var mapQuestAerial = new L.TileLayer(mapQuestAerialURL, {
+                                                           maxZoom: 18, 
+                                                           attribution: mapQuestAerialAttrib, 
+                                                           subdomains: ['oatile1','oatile2','oatile3','oatile4']
+                                                        });
   map.addLayer(cloudmade);
-  map.addLayer(geojsonLayer);
-  map.fitBounds(bounds)
+  map.addLayer(mapQuestAerial);
+  map.addLayer(boundaryGeoJSON);
+  map.fitBounds(bounds);
+
+  // Group layers and add layerswitching
+  // Requires leaflet master... WORD!!!
+  var baseMaps = {"Road": cloudmade, "Aerial": mapQuestAerial};
+  var overlayMaps = {"Client Boundary": boundaryGeoJSON};
+
+  var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+  map.addControl(layersControl);
 }
