@@ -23,6 +23,8 @@ function makeMap(data){
   //Extend GeoJSON with styling information
   //console.debug(sitePoly);
   $.each(sitePoly.features, function(key, value){
+     /** TODO: Conditional styling logic for GPS Point via
+        the 'type' key's value **/
      //console.debug("Key: " + key + ", Value: " + value);
      $.extend(true, value, boundaryStyle);
    }
