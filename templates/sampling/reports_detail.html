@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
    
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/leaflet/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/leaflet/dist/leaflet.css" />
     <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/leaflet/leaflet.ie.css" /><![endif]-->
   </head>
 
@@ -146,7 +146,7 @@
 {% else %}
     <p>No Status</p>
 {% endif %}
-  <script src="{{ STATIC_URL }}libs/leaflet/leaflet.js"></script>
+  <script src="{{ STATIC_URL }}libs/leaflet/dist/leaflet.js"></script>
   <script src="{{ STATIC_URL }}libs/jquery/jquery-1.7.1.min.js"></script>
   <script type="text/javascript"> 
       var boundary_id = {{ boundary.id }} 
