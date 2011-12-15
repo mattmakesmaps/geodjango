@@ -1,9 +1,16 @@
-{% if project_list %}
-    <ul>
-    {% for p in project_list %}
-        <li><a href="/{{ p.id }}/">{{ p.number }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Projects found for this client.</p>
-{% endif %}
+{% extends "base.html" %}
+
+  {% block title %}Client Detail{% endblock %}
+
+  {% block content %}
+  <h1>Client Details</h1>
+    {% if project_list %}
+      <ul>
+      {% for p in project_list %}
+          <li><a href="/{{ p.id }}/">{{ p.number }}</a></li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Projects found for this client.</p>
+    {% endif %}
+  {% endblock %}

@@ -1,9 +1,8 @@
-<html>
-<head>
-  <title>Clients</title>
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" /> 
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Clients{% endblock %}
+
+{% block content %}
   <h1>Clients</h1>
     {% if client_list %}
         {% for c in client_list %}
@@ -18,5 +17,4 @@
     {% else %}
       <p>No Report</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

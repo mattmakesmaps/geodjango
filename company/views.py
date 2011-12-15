@@ -21,7 +21,7 @@ def clients(request):
 # __TODO__ grab reports associated with a project
 def clients_detail(request, client_id):
     project_list = Project.objects.filter(client__pk=client_id)
-    return render_to_response('company/clients_detail.html', {'project_list': project_list})
+    return render_to_response('company/clients_detail.html', {'project_list': project_list}, context_instance=RequestContext(request))
 
 # Uses render_to_response()
 def reports(request):

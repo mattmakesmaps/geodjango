@@ -1,11 +1,8 @@
-<html>
-<head>
-  <title>Reports</title>    
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
-</head>
+{% extends "base.html" %}
 
-<body>
+  {% block title %}Reports{% endblock %}   
 
+  {% block content %}
   <h1>Report Index</h1>
     {% if report_list %}
       <ul>
@@ -16,5 +13,4 @@
     {% else %}
       <p>No Report</p>
     {% endif %}
-</body>
-</html>
+  {% endblock %}
