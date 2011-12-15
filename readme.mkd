@@ -13,8 +13,3 @@ http://stackoverflow.com/questions/3034482/rendering-spatial-data-of-geoqueryset
 * [FeatureServer](http://pypi.python.org/pypi/FeatureServer/1.12)/[VectorFeatures](http://pypi.python.org/pypi/vectorformats/0.1)
 * [jQuery](jquery.com)
 * [Leaflet](http://leaflet.cloudmade.com/)
-
-# TODO
-
-* From GeoDjango view, pass min bbox points so leaflet can have map
-  properly zoomed and centered.
