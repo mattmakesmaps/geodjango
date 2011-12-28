@@ -109,6 +109,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    # Added https://code.djangoproject.com/wiki/PageStatsMiddleware
+    'django.middleware.pagestatsmiddleware.StatsMiddleware',
 )
 
 ROOT_URLCONF = 'geodjango.urls'

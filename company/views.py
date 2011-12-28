@@ -34,13 +34,17 @@ def reports(request):
 def reports_detail(request, report_id):
     report_detail = Report.objects.get(pk=report_id)
     report_status = Status.objects.filter(report__pk=report_id)[0]
-  
+
+    # Attempt to reduce the number of database calls using 
+    # select_related() to traverse the joins.
+   # project = Project.objects.select_related().get(report__pk=report_id)
+
     # Slog through the models and get a boundary from a report
     # TODO Try walking all the way up in one call
     project = Project.objects.get(report__pk=report_id)
     client = Client.objects.get(project__pk=project.id)
     boundary = Boundary.objects.get(client=client.id)
-
+    
     return render_to_response('sampling/reports_detail.html', {'report_detail': report_detail, 'report_status':report_status, 'boundary': boundary}, context_instance=RequestContext(request))
 
 # Using CRSchmidt's vectorfeatures module, create a real
