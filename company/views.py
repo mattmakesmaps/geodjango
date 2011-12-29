@@ -28,21 +28,17 @@ def reports(request):
     report_list = Report.objects.all()
     return render_to_response('company/reports.html', {'report_list': report_list}, context_instance=RequestContext(request))
 
-# Uses render_to_response()
 # NOTE: render_to_response() requires third argument to override default context.
 # This is required to access STATIC_URL variable in template
 def reports_detail(request, report_id):
-    report_detail = Report.objects.get(pk=report_id)
-    report_status = Status.objects.filter(report__pk=report_id)[0]
-
-    # Attempt to reduce the number of database calls using 
-    # select_related() to traverse the joins.
-   # project = Project.objects.select_related().get(report__pk=report_id)
+    # Use the ORM to construct a query with multiple joins
+    report_status = Status.objects.select_related('report__project__client').filter(report__pk=report_id)[0]
+    report_detail = report_status.report
 
     # Slog through the models and get a boundary from a report
-    # TODO Try walking all the way up in one call
-    project = Project.objects.get(report__pk=report_id)
-    client = Client.objects.get(project__pk=project.id)
+    # The database will not be queried
+    project = report_detail.project
+    client = project.client
     boundary = Boundary.objects.get(client=client.id)
     
     return render_to_response('sampling/reports_detail.html', {'report_detail': report_detail, 'report_status':report_status, 'boundary': boundary}, context_instance=RequestContext(request))
