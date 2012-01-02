@@ -1,21 +1,19 @@
-<html>
-  <head>
-    <title>
+{% extends "base.html" %}
+    {% block title %}
        {% if report_detail %}
          {{ report_detail.name }}
        {% else %}
          Error
        {% endif %}
-    </title>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
-   
+    {% endblock %}
+  
+    {% block extrahead %} 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/leaflet/dist/leaflet.css" />
     <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/leaflet/leaflet.ie.css" /><![endif]-->
-  </head>
+    {% endblock %}
 
-  <body>
+{% block content %}
 <!-- Call to Page Stats MiddleWare -->
 <!-- STATS: Total: %(totTime).2f Python: %(pyTime).2f DB: %(dbTime).2f Queries: %(queries)d -->
 {% if report_detail %}
@@ -159,4 +157,4 @@
   </script>
   <script src="{{ STATIC_URL }}js/mapcode.js"></script>
   </body>
-</html>
+{% endblock %}

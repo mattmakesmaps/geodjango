@@ -4,6 +4,7 @@
   <title>{% block title %}RIDOLFI Sampling Tracker{% endblock %}</title>
   <link href='http://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basic.css" />
+  {% block extrahead %}{% endblock %}
 </head>
 <body>
   {% block content %}{% endblock %}
