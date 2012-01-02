@@ -3,8 +3,8 @@ from company.models import Report, Client, Project, Boundary
 from sampling.models import Status
 
 urlpatterns = patterns('company.views',
-    # Index of the sampling application
-    url(r'^index/$', 'index'),
+    # Index of the company application
+    url(r'^$', 'index'),
 
     # Root of the client based views
     url(r'^clients/$', 'clients'),

@@ -11,6 +11,7 @@ a:hover, a:active {
   color: #4B5657;
   background-color: #e3e3e3;
 }
+
 #sidebar {
   float: left;
   width: 350px;
@@ -35,12 +36,15 @@ td {
   font-size: 16px;
   font-weight: bold;
 }
+
 td.desc {
   width: 350px;
 }
+
 td.true {
   color: #2c353e;
 }
+
 td.false{
   color: #a92c10;
 }
