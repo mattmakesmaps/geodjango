@@ -2,6 +2,8 @@ from django.contrib.gis.db import models
 from company.models import Boundary, Client, Project, Report
 
 class Lab(models.Model):
+    """Analytical labs."""
+
     name = models.CharField('Analytical Lab', max_length=75)
 
     # Function to return Alias (useful in admin)
@@ -11,7 +13,9 @@ class Lab(models.Model):
     class Meta:
         ordering = ['name']
 
-class SDG(models.Model):    
+class SDG(models.Model):
+    """The sample digestion group."""    
+
     name = models.CharField('SDG Name', max_length = 25)
     lab = models.ForeignKey(Lab)
     report = models.ForeignKey(Report)
@@ -28,6 +32,8 @@ class SDG(models.Model):
         ordering = ['name']
 
 class Status(models.Model):
+    """The status of a report."""
+
     report = models.OneToOneField(Report)
     data_validated = models.BooleanField('Data Validated')
     edd_prep_pre_validation = models.BooleanField('Non-Validated EDD Prepared for Import')
@@ -43,9 +49,6 @@ class Status(models.Model):
     draft_qa_qc = models.BooleanField('Draft Tables QA/QC Against Hardcopy')
     final_formatting = models.BooleanField('Tables Undergone Final Formatting')
 
-    # Function to return Alias (useful in admin)
-   # def __unicode__(self):
-   #     return self.report
     class Meta:
         verbose_name = 'Status'
         verbose_name_plural = 'Status'

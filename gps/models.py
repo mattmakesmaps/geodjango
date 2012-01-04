@@ -1,8 +1,9 @@
 from django.contrib.gis.db import models
 from company.models import Boundary, Client, Project, Report
 
-# Supplementary Info for GPS/Site Features
 class Feature_Type(models.Model):
+    """Supplementary info for GPS and Site Features."""
+
     name = models.CharField('Name', max_length = 100)
 
     def __unicode__(self):
@@ -12,6 +13,8 @@ class Feature_Type(models.Model):
         verbose_name_plural = 'Feature Types'
 
 class GPS_Metadata(models.Model):
+    """An individual GPS data batch."""
+
     name = models.CharField('File Name', max_length = 100)
     # Think about alternative field types
     pathway = models.CharField('File Path', max_length = 500)
@@ -26,6 +29,8 @@ class GPS_Metadata(models.Model):
 
 # GPS Models
 class GPS_Point(models.Model):
+    """GPS Point features."""
+
     name = models.CharField('Name', max_length=50)
     max_pdop = models.DecimalField('Max_PDOP', max_digits=5, decimal_places=1, blank=True, null=True)
     gps_date = models.DateField('GPS_Date', blank=True, null=True)
@@ -47,6 +52,8 @@ class GPS_Point(models.Model):
         verbose_name_plural = 'GPS Points'
 
 class GPS_Line(models.Model):
+    """GPS Line features."""
+
     name = models.CharField('Name', max_length=50)
     max_pdop = models.DecimalField('Max_PDOP', max_digits=5, decimal_places=1, blank=True, null=True)
     gps_date = models.DateField('GPS_Date', blank=True, null=True)
@@ -68,6 +75,8 @@ class GPS_Line(models.Model):
         verbose_name_plural = 'GPS Lines'
 
 class GPS_Poly(models.Model):
+    """GPS polygon features."""
+
     name = models.CharField('Name', max_length=50)
     max_pdop = models.DecimalField('Max_PDOP', max_digits=5, decimal_places=1, blank=True, null=True)
     gps_date = models.DateField('GPS_Date', blank=True, null=True)
@@ -90,6 +99,8 @@ class GPS_Poly(models.Model):
 
 # Supporting Site Features
 class Site_Point(models.Model):
+    """Site-specific point features."""
+
     name = models.CharField('Name', max_length=100)
     feature_type = models.ForeignKey(Feature_Type, default='undefined', blank=True, null=True)
     projects = models.ManyToManyField(Project)
@@ -105,6 +116,8 @@ class Site_Point(models.Model):
         verbose_name_plural = 'Sites Points'
 
 class Site_Line(models.Model):
+    """Site-specific line features."""
+
     name = models.CharField('Name', max_length=100)
     feature_type = models.ForeignKey(Feature_Type, default='undefined', blank=True)
     projects = models.ManyToManyField(Project)
@@ -120,6 +133,8 @@ class Site_Line(models.Model):
         verbose_name_plural = 'Site Lines'
 
 class Site_Poly(models.Model):
+    """Site-specific polygon features."""
+
     name = models.CharField('Name', max_length=100)
     feature_type = models.ForeignKey(Feature_Type, default='Uncategorized', blank=True)
     projects = models.ManyToManyField(Project)
