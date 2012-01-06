@@ -5,6 +5,7 @@ from django.template import Context, RequestContext, loader
 from django.shortcuts import render_to_response
 from gps.models import GPS_Metadata, GPS_Point
 
+# Utility Functions
 def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom"):
     """Convert a GeoDjango QuerySet to a GeoJSON Object"""
     
@@ -23,6 +24,7 @@ def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom
     s = geoj.encode(djf.decode(queryset))
     return s
 
+# View Functions
 def index(request):
     """Placeholder for index"""
 

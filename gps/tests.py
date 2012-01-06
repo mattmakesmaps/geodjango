@@ -1,16 +1,9 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
 
-
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+class GeoJSONTestCase(TestCase):
+    def test_gps_point(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Generate get request for a GPS point.
         """
-        self.assertEqual(1 + 1, 2)
+        response = self.client.get('/gps/geojson/points/3/')
+        self.assertEqual(response.status_code, 200)
