@@ -4,6 +4,9 @@ from django.http import HttpResponse
 from django.template import Context, RequestContext, loader
 from django.shortcuts import render_to_response
 from gps.models import GPS_Metadata, GPS_Point
+from decimal import Decimal
+from datetime import date
+import django.db.models.base
 
 # Utility Functions
 def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom"):
@@ -11,17 +14,34 @@ def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom
     
     """
     Workaround for mutable default value
-    TODO: Need to trap for fields not serializable
+    TODO: Need finish handlers for date and decimal
+          JSON serialization.
     """
     if properties_list==None:
-        properties_list = filter_object[0].__dict__.keys()
+        properties_list = []
+        #Return dictionary of key value pairs
+        filter_dict = filter_object[0].__dict__
+        #Remove bunk fields
+        for d in filter_dict:
+            if isinstance(filter_dict[d], django.db.models.base.ModelState):
+                pass
+            elif isinstance(filter_dict[d], Decimal):
+                #Either handle or change to float
+                pass
+            elif isinstance(filter_dict[d], date):
+                pass
+            else:
+                properties_list.append(d)
+
+        properties_list.remove(geom_col)
     else:
-        properties = []
+        properties_list = []
 
     queryset = filter_object
     djf = Django.Django(geodjango=geom_col, properties=properties_list)
+    decode_djf = djf.decode(queryset)
     geoj = GeoJSON.GeoJSON()
-    s = geoj.encode(djf.decode(queryset))
+    s = geoj.encode(decode_djf)
     return s
 
 # View Functions
@@ -34,6 +54,6 @@ def gps_points(request, gps_metadata_id):
     """Return GPS Points for a given Metadata ID"""
 
     filter_object = GPS_Point.objects.filter(gps_metadata__pk=gps_metadata_id)
-    properties_list = ['name','feat_name']
+    #properties_list = ['name','feat_name']
     GeoJSON = djangoToGeoJSON(request, filter_object)
     return HttpResponse(GeoJSON)
