@@ -12,11 +12,7 @@ import django.db.models.base
 def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom"):
     """Convert a GeoDjango QuerySet to a GeoJSON Object"""
     
-    """
-    Workaround for mutable default value
-    TODO: Need finish handlers for date and decimal
-          JSON serialization.
-    """
+    #Workaround for mutable default value
     if properties_list==None:
         properties_list = []
         #Return dictionary of key value pairs
@@ -25,6 +21,9 @@ def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom
         for d in filter_dict:
             if isinstance(filter_dict[d], django.db.models.base.ModelState):
                 pass
+            """
+            TODO: Delete after moving validation to vectorfeatures objects
+            """
             elif isinstance(filter_dict[d], Decimal):
                 #Either handle or change to float
                 pass
@@ -40,6 +39,10 @@ def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom
     queryset = filter_object
     djf = Django.Django(geodjango=geom_col, properties=properties_list)
     decode_djf = djf.decode(queryset)
+    """
+    TODO: Decode into vectorfeatures objects. Check for type, then address
+          before encode to GeoJSON. str() date, maybe same for decimal?
+    """
     geoj = GeoJSON.GeoJSON()
     s = geoj.encode(decode_djf)
     return s
