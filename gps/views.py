@@ -21,9 +21,7 @@ def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom
         for d in filter_dict:
             if isinstance(filter_dict[d], django.db.models.base.ModelState):
                 pass
-            """
-            TODO: Delete after moving validation to vectorfeatures objects
-            """
+            #TODO: Delete after moving validation to vectorfeatures objects
             elif isinstance(filter_dict[d], Decimal):
                 #Either handle or change to float
                 pass
