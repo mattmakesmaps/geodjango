@@ -17,6 +17,5 @@ def gps_points(request, gps_metadata_id):
     """Return GPS Points for a given Metadata ID"""
 
     filter_object = GPS_Point.objects.filter(gps_metadata__pk=gps_metadata_id)
-    #properties_list = ['name','feat_name']
     GeoJSON = djangoToGeoJSON(request, filter_object)
     return HttpResponse(GeoJSON)

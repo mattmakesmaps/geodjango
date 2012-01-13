@@ -30,8 +30,6 @@ def djangoToGeoJSON(request, filter_object, properties_list=None, geom_col="geom
                 properties_list.append(d)
 
         properties_list.remove(geom_col)
-    else:
-        properties_list = []
 
     queryset = filter_object
     djf = Django.Django(geodjango=geom_col, properties=properties_list)
